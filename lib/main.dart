@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
 import './transactionClass.dart';
 
@@ -17,10 +18,10 @@ class MyApp extends StatelessWidget {
 class MyHomePage extends StatelessWidget {
   final List<txnClass> txnList = [
     txnClass(
-      txnId: 'xZMEHDF',
-      txnTitle: 'Breakfast',
-      txnAmount: 25,
-      txnDate: DateTime.now()
+        txnId: 'xZMEHDF',
+        txnTitle: 'Breakfast',
+        txnAmount: 25,
+        txnDate: DateTime.now()
     ),
     txnClass(
         txnId: 'xYRHGDB',
@@ -51,43 +52,66 @@ class MyHomePage extends StatelessWidget {
               elevation: 5,
             ),
             Column(
-              children: txnList.map((txn) {
-                return Card(
-                  child: Row(
-                    children: [
-                      Column(
+                children: txnList.map((txn) {
+                  return Card(
+                      child: Row(
                         children: [
-                          Text(txn.txnTitle),
-                          Text(txn.txnDate.toString())
-                        ],
-                      ),
-                      new Spacer(),
-                      Container(
-                        margin: EdgeInsets.symmetric(
-                          vertical: 10,
-                          horizontal: 10
-                        ),
-                        padding: EdgeInsets.symmetric(
-                          vertical: 7.5,
-                          horizontal: 5
-                        ),
-                        decoration: BoxDecoration(
-                          border: Border.all(
-                            color: Colors.indigo,
-                            width: 2
-                          )
-                        ),
-                        child: Text(
-                          '${txn.txnAmount.toString()} ₹',
-                          style: TextStyle(
-                            fontSize: 17
+                          Container(
+                            margin: EdgeInsets.symmetric(
+                                vertical: 2.5,
+                                horizontal: 7.5
+                            ),
+                            padding: EdgeInsets.symmetric(
+                                vertical: 2.5,
+                                horizontal: 2.5
+                            ),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  txn.txnTitle,
+                                  style: TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 19
+                                  ),
+                                ),
+                                Text(
+                                  DateFormat.yMMMd().add_jm().format(txn.txnDate),
+                                  style: TextStyle(
+                                    color: Colors.grey
+                                  ),
+                                ),
+                              ],
+                            ),
                           ),
-                        ),
-                      ),
-                    ],
-                  )
-                );
-              }).toList()
+                          new Spacer(),
+                          Container(
+                            margin: EdgeInsets.symmetric(
+                                vertical: 7,
+                                horizontal: 10
+                            ),
+                            padding: EdgeInsets.symmetric(
+                                vertical: 7.5,
+                                horizontal: 5
+                            ),
+                            decoration: BoxDecoration(
+                                border: Border.all(
+                                    color: Colors.indigo,
+                                    width: 2
+                                )
+                            ),
+                            child: Text(
+                              '${txn.txnAmount} ₹',
+                              style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontSize: 17
+                              ),
+                            ),
+                          ),
+                        ],
+                      )
+                  );
+                }).toList()
             )
           ],
         ));
