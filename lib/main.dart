@@ -16,26 +16,31 @@ class MyHomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Flutter App'),
-      ),
-      body: Column(
-        children: [
-          Container(
-            width: double.infinity,
-            child: Card(
-              child: Text(
+        appBar: AppBar(
+          title: Text('Flutter App'),
+        ),
+        body: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            Container(
+              width: double.infinity,
+              child: Card(
+                child: Text(
                   'Weekly',
-                textAlign: TextAlign.center,
+                  style: TextStyle(fontSize: 30),
+                  textAlign: TextAlign.center,
+                ),
+                color: Colors.indigoAccent,
+                elevation: 5,
               ),
-              color: Colors.indigoAccent,
             ),
-          ),
-          Card(
-            child: Text('List of Transactions'),
-          )
-        ],
-      )
-    );
+            Card(
+              child: Text('List of Transactions',
+                  style: TextStyle(fontSize: 30), textAlign: TextAlign.center),
+              color: Colors.greenAccent,
+            )
+          ],
+        ));
   }
 }
