@@ -46,7 +46,7 @@ class MyHomePage extends StatelessWidget {
                 'Week Chart',
                 style: TextStyle(fontSize: 30),
                 textAlign: TextAlign.center,
-            ),
+              ),
               color: Colors.indigoAccent,
               elevation: 5,
             ),
@@ -61,7 +61,29 @@ class MyHomePage extends StatelessWidget {
                           Text(txn.txnDate.toString())
                         ],
                       ),
-                      Text(txn.txnAmount.toString())
+                      new Spacer(),
+                      Container(
+                        margin: EdgeInsets.symmetric(
+                          vertical: 10,
+                          horizontal: 10
+                        ),
+                        padding: EdgeInsets.symmetric(
+                          vertical: 7.5,
+                          horizontal: 5
+                        ),
+                        decoration: BoxDecoration(
+                          border: Border.all(
+                            color: Colors.indigo,
+                            width: 2
+                          )
+                        ),
+                        child: Text(
+                          '${txn.txnAmount.toString()} ₹',
+                          style: TextStyle(
+                            fontSize: 17
+                          ),
+                        ),
+                      ),
                     ],
                   )
                 );
