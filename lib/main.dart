@@ -19,9 +19,23 @@ class MyHomePage extends StatelessWidget {
       appBar: AppBar(
         title: Text('Flutter App'),
       ),
-      body: Center(
-        child: Text('Widget Playground!'),
-      ),
+      body: Column(
+        children: [
+          Container(
+            width: double.infinity,
+            child: Card(
+              child: Text(
+                  'Weekly',
+                textAlign: TextAlign.center,
+              ),
+              color: Colors.indigoAccent,
+            ),
+          ),
+          Card(
+            child: Text('List of Transactions'),
+          )
+        ],
+      )
     );
   }
 }
