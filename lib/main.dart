@@ -24,7 +24,7 @@ class MyHomePage extends StatelessWidget {
     ),
     txnClass(
         txnId: 'xYRHGDB',
-        txnTitle: 'Beer',
+        txnTitle: 'Gadget',
         txnAmount: 200,
         txnDate: DateTime.now()
     )
@@ -53,7 +53,17 @@ class MyHomePage extends StatelessWidget {
             Column(
               children: txnList.map((txn) {
                 return Card(
-                  child: Text(txn.txnTitle),
+                  child: Row(
+                    children: [
+                      Column(
+                        children: [
+                          Text(txn.txnTitle),
+                          Text(txn.txnDate.toString())
+                        ],
+                      ),
+                      Text(txn.txnAmount.toString())
+                    ],
+                  )
                 );
               }).toList()
             )
