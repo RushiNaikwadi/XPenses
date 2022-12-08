@@ -31,6 +31,8 @@ class MyHomePage extends StatelessWidget {
     )
   ];
 
+  final titleController = TextEditingController();
+  final amountController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -51,9 +53,46 @@ class MyHomePage extends StatelessWidget {
               color: Colors.indigoAccent,
               elevation: 5,
             ),
+            Card(
+              elevation: 15,
+              child: Container(
+                padding: EdgeInsets.symmetric(vertical: 5, horizontal: 5),
+                margin: EdgeInsets.symmetric(vertical: 2, horizontal: 5),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.end,
+                  children: [
+                    TextField(
+                      decoration: InputDecoration(labelText: 'Title'),
+                      controller: titleController,
+                    ),
+                    TextField(
+                      decoration: InputDecoration(labelText: 'Amount'),
+                      controller: amountController,
+                    ),
+                    SizedBox(height: 10),
+                    ElevatedButton(
+                        onPressed: () {
+                          print(titleController.text);
+                          print(amountController.text);
+                        },
+                        child: Text(
+                          'Add Trasaction',
+                          style: TextStyle(
+                            color: Colors.black
+                          ),
+                        ),
+                        style: ButtonStyle(
+                          backgroundColor: MaterialStateProperty.all(Colors.greenAccent),
+                        ),
+                    ),
+                  ],
+                ),
+              )
+            ),
             Column(
                 children: txnList.map((txn) {
                   return Card(
+                    elevation: 15,
                       child: Row(
                         children: [
                           Container(
