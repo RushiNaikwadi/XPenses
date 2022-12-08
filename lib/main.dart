@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import './transactionClass.dart';
+
 void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
@@ -13,6 +15,22 @@ class MyApp extends StatelessWidget {
 }
 
 class MyHomePage extends StatelessWidget {
+  final List<txnClass> txnList = [
+    txnClass(
+      txnId: 'xZMEHDF',
+      txnTitle: 'Breakfast',
+      txnAmount: 25,
+      txnDate: DateTime.now()
+    ),
+    txnClass(
+        txnId: 'xYRHGDB',
+        txnTitle: 'Beer',
+        txnAmount: 200,
+        txnDate: DateTime.now()
+    )
+  ];
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -20,25 +38,24 @@ class MyHomePage extends StatelessWidget {
           title: Text('Flutter App'),
         ),
         body: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            Container(
-              width: double.infinity,
-              child: Card(
-                child: Text(
-                  'Weekly',
-                  style: TextStyle(fontSize: 30),
-                  textAlign: TextAlign.center,
-                ),
-                color: Colors.indigoAccent,
-                elevation: 5,
-              ),
-            ),
             Card(
-              child: Text('List of Transactions',
-                  style: TextStyle(fontSize: 30), textAlign: TextAlign.center),
-              color: Colors.greenAccent,
+              child: Text(
+                'Week Chart',
+                style: TextStyle(fontSize: 30),
+                textAlign: TextAlign.center,
+            ),
+              color: Colors.indigoAccent,
+              elevation: 5,
+            ),
+            Column(
+              children: txnList.map((txn) {
+                return Card(
+                  child: Text(txn.txnTitle),
+                );
+              }).toList()
             )
           ],
         ));
