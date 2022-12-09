@@ -24,22 +24,24 @@ class MyHomePage extends StatelessWidget {
         appBar: AppBar(
           title: Text('Xpenses'),
         ),
-        body: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            Card(
-              child: Text(
-                'Week Chart',
-                style: TextStyle(fontSize: 30),
-                textAlign: TextAlign.center,
-              ),
-              color: Colors.grey[400],
-              elevation: 5,
+        body: SingleChildScrollView(
+          child: Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                Card(
+                  child: Text(
+                    'Week Chart',
+                    style: TextStyle(fontSize: 30),
+                    textAlign: TextAlign.center,
+                  ),
+                  color: Colors.grey[400],
+                  elevation: 5,
+                ),
+                UserTransaction()
+              ],
             ),
-            UserTransaction()
-          ],
-        )
+        ),
     );
   }
 }

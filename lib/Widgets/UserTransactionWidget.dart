@@ -23,7 +23,63 @@ class _UserTransactionState extends State<UserTransaction> {
         txnTitle: 'Gadget',
         txnAmount: 200,
         txnDate: DateTime.now()
+    ),
+    TxnClass(
+        txnId: 'xYRHGDB',
+        txnTitle: 'Gadget',
+        txnAmount: 200,
+        txnDate: DateTime.now()
+    ),
+    TxnClass(
+        txnId: 'xYRHGDB',
+        txnTitle: 'Gadget',
+        txnAmount: 200,
+        txnDate: DateTime.now()
+    ),
+    TxnClass(
+        txnId: 'xYRHGDB',
+        txnTitle: 'Gadget',
+        txnAmount: 200,
+        txnDate: DateTime.now()
+    ),
+    TxnClass(
+        txnId: 'xYRHGDB',
+        txnTitle: 'Gadget',
+        txnAmount: 200,
+        txnDate: DateTime.now()
+    ),
+    TxnClass(
+        txnId: 'xYRHGDB',
+        txnTitle: 'Gadget',
+        txnAmount: 200,
+        txnDate: DateTime.now()
+    ),
+    TxnClass(
+        txnId: 'xYRHGDB',
+        txnTitle: 'Gadget',
+        txnAmount: 200,
+        txnDate: DateTime.now()
+    ),
+    TxnClass(
+        txnId: 'xYRHGDB',
+        txnTitle: 'Gadget',
+        txnAmount: 200,
+        txnDate: DateTime.now()
+    ),
+    TxnClass(
+        txnId: 'xYRHGDB',
+        txnTitle: 'Gadget',
+        txnAmount: 200,
+        txnDate: DateTime.now()
+    ),
+    TxnClass(
+        txnId: 'xYRHGDB',
+        txnTitle: 'Gadget',
+        txnAmount: 200,
+        txnDate: DateTime.now()
     )
+
+
   ];
 
   void addNewTransaction(String inputTitle, double inputAmount) {
@@ -44,6 +100,7 @@ class _UserTransactionState extends State<UserTransaction> {
     return Column(
       children: [
         NewTransaction(transactionAdder: addNewTransaction),
+        SizedBox(height: 10),
         TxnListWidget(userTxnList: _userTxnList)
       ],
     );
