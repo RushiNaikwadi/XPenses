@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../Models/TxnClass.dart';
-import 'UserTransaction/NewTransactionWidget.dart';
+import 'UserTransaction/NewTransactionAdderWidget.dart';
 import 'UserTransaction/TransactionListWidget.dart';
 
 class UserTransaction extends StatefulWidget {
@@ -78,8 +78,6 @@ class _UserTransactionState extends State<UserTransaction> {
         txnAmount: 200,
         txnDate: DateTime.now()
     )
-
-
   ];
 
   void addNewTransaction(String inputTitle, double inputAmount) {
@@ -99,7 +97,7 @@ class _UserTransactionState extends State<UserTransaction> {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        NewTransaction(transactionAdder: addNewTransaction),
+        NewTransactionAdderWidget(transactionAdder: addNewTransaction),
         SizedBox(height: 10),
         TxnListWidget(userTxnList: _userTxnList)
       ],

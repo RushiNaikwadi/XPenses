@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 
-class NewTransaction extends StatelessWidget {
+class NewTransactionAdderWidget extends StatelessWidget {
   final titleController = TextEditingController();
   final amountController = TextEditingController();
 
   final Function transactionAdder;
-  NewTransaction({@required this.transactionAdder});
+  NewTransactionAdderWidget({@required this.transactionAdder});
 
   @override
   Widget build(BuildContext context) {

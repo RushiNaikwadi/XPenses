@@ -9,11 +9,11 @@ class TxnListWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.symmetric(vertical: 2, horizontal: 2),
-      margin: EdgeInsets.symmetric(vertical: 2, horizontal: 5),
-      height: 450,
-      child: ListView(
-          children: userTxnList.map((txn) {
+      padding: EdgeInsets.symmetric(vertical: 1, horizontal: 1),
+      margin: EdgeInsets.symmetric(vertical: 2, horizontal: 2),
+      height: 400,
+      child: ListView.builder(
+          itemBuilder: (BuildContext context, int index) {
             return Card(
                 elevation: 15,
                 child: Row(
@@ -31,14 +31,14 @@ class TxnListWidget extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            txn.txnTitle,
+                            userTxnList[index].txnTitle,
                             style: TextStyle(
                                 fontWeight: FontWeight.bold,
                                 fontSize: 19
                             ),
                           ),
                           Text(
-                            DateFormat.yMMMd().add_jm().format(txn.txnDate),
+                            DateFormat.yMMMd().add_jm().format(userTxnList[index].txnDate),
                             style: TextStyle(
                                 color: Colors.grey
                             ),
@@ -63,7 +63,7 @@ class TxnListWidget extends StatelessWidget {
                           )
                       ),
                       child: Text(
-                        '${txn.txnAmount} ₹',
+                        '${userTxnList[index].txnAmount} ₹',
                         style: TextStyle(
                             fontWeight: FontWeight.bold,
                             fontSize: 17
@@ -73,7 +73,8 @@ class TxnListWidget extends StatelessWidget {
                   ],
                 )
             );
-          }).toList()
+          },
+        itemCount: userTxnList.length,
       ),
     );
   }
