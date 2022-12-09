@@ -1,12 +1,12 @@
 import 'package:flutter/cupertino.dart';
 
-class txnClass {
+class TxnClass {
   final String txnId;
   final String txnTitle;
   final double txnAmount;
   final DateTime txnDate;
 
-  txnClass({
+  TxnClass({
     @required this.txnId,
     @required this.txnTitle,
     @required this.txnAmount,
