@@ -7,53 +7,67 @@ class NewTransactionAdderWidget extends StatelessWidget {
   final Function transactionAdder;
   NewTransactionAdderWidget({@required this.transactionAdder});
 
+  void callTransactionAdder () {
+    String txnTitle = titleController.text;
+    int txnAmount = int.parse(amountController.text);
+
+    if (txnTitle.isEmpty == true || txnAmount <= 0) {
+      return;
+    }
+
+    transactionAdder(
+        titleController.text,
+        txnAmount
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
-    return Card(
-        shape: RoundedRectangleBorder(
-          side: BorderSide(
-              color: Colors.deepPurpleAccent,
-              width: 3
+    return Container(
+      margin: EdgeInsets.fromLTRB(5, 2, 5, 0),
+      child: Card(
+         color: Colors.purpleAccent[100],
+          shape: RoundedRectangleBorder(
+            side: BorderSide(
+                color: Colors.grey[900],
+                width: 3
+            ),
+            borderRadius: BorderRadius.circular(10),
           ),
-          borderRadius: BorderRadius.circular(25),
-        ),
-        elevation: 15,
-        child: Container(
-          padding: EdgeInsets.symmetric(vertical: 5, horizontal: 5),
-          margin: EdgeInsets.symmetric(vertical: 2, horizontal: 5),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.end,
-            children: [
-              TextField(
-                decoration: InputDecoration(labelText: 'Title'),
-                controller: titleController,
-              ),
-              TextField(
-                decoration: InputDecoration(labelText: 'Amount'),
-                controller: amountController,
-              ),
-              SizedBox(height: 10),
-              ElevatedButton(
-                onPressed: () {
-                  transactionAdder(
-                      titleController.text,
-                      double.parse(amountController.text)
-                  );
-                },
-                child: Text(
-                  'Add Trasaction',
-                  style: TextStyle(
-                      color: Colors.black
+          elevation: 15,
+          child: Container(
+            padding: EdgeInsets.symmetric(vertical: 5, horizontal: 10),
+            margin: EdgeInsets.symmetric(vertical: 0, horizontal: 15),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.end,
+              children: [
+                TextField(
+                  decoration: InputDecoration(labelText: 'Title'),
+                  controller: titleController,
+                ),
+                TextField(
+                  decoration: InputDecoration(labelText: 'Amount'),
+                  controller: amountController,
+                  keyboardType: TextInputType.number,
+                ),
+                SizedBox(height: 5),
+                ElevatedButton(
+                  onPressed: () => callTransactionAdder(),
+                  child: Text(
+                    'Add Trasaction',
+                    style: TextStyle(
+                        color: Colors.yellow
+                    ),
+                  ),
+                  style: ButtonStyle(
+                    backgroundColor: MaterialStateProperty.all(Colors.grey[900]),
                   ),
                 ),
-                style: ButtonStyle(
-                  backgroundColor: MaterialStateProperty.all(Colors.greenAccent),
-                ),
-              ),
-
-            ],
-          ),
-        )
+                SizedBox(height: 5)
+              ],
+            ),
+          )
+      ),
     );
   }
 }

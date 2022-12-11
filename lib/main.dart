@@ -22,21 +22,46 @@ class MyHomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Text('Xpenses'),
+          title: Text(
+              'Xpenses',
+            style: TextStyle(
+              color: Colors.yellow
+            ),
+          ),
+          backgroundColor: Colors.grey[900],
         ),
         body: SingleChildScrollView(
           child: Column(
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
-                Card(
-                  child: Text(
-                    'Week Chart',
-                    style: TextStyle(fontSize: 30),
-                    textAlign: TextAlign.center,
+                Container(
+                  width: double.infinity,
+                  height: 110,
+                  margin: EdgeInsets.symmetric(vertical: 2.5, horizontal: 2),
+                  padding: EdgeInsets.symmetric(vertical: 2.5, horizontal: 2.5),
+                  child: Card(
+                    shape: RoundedRectangleBorder(
+                      side: BorderSide(
+                          color: Colors.grey[900],
+                          width: 3
+                      ),
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                    child: Center(
+                      child: Text(
+                        'Week Chart',
+                        style: TextStyle(
+                            fontSize: 45,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.blue[900]
+                        ),
+                        textAlign: TextAlign.center,
+                      ),
+                    ),
+                    color: Colors.brown[300],
+                    elevation: 5,
                   ),
-                  color: Colors.grey[400],
-                  elevation: 5,
                 ),
                 UserTransaction()
               ],

@@ -13,74 +13,26 @@ class UserTransaction extends StatefulWidget {
 class _UserTransactionState extends State<UserTransaction> {
   final List<TxnClass> _userTxnList = [
     TxnClass(
-        txnId: 'xZMEHDF',
+        txnId: 'e7e4d8gg4',
         txnTitle: 'Breakfast',
         txnAmount: 25,
         txnDate: DateTime.now()
     ),
     TxnClass(
-        txnId: 'xYRHGDB',
+        txnId: 'e7t8ffg64',
         txnTitle: 'Gadget',
         txnAmount: 200,
         txnDate: DateTime.now()
     ),
     TxnClass(
-        txnId: 'xYRHGDB',
-        txnTitle: 'Gadget',
-        txnAmount: 200,
-        txnDate: DateTime.now()
-    ),
-    TxnClass(
-        txnId: 'xYRHGDB',
-        txnTitle: 'Gadget',
-        txnAmount: 200,
-        txnDate: DateTime.now()
-    ),
-    TxnClass(
-        txnId: 'xYRHGDB',
-        txnTitle: 'Gadget',
-        txnAmount: 200,
-        txnDate: DateTime.now()
-    ),
-    TxnClass(
-        txnId: 'xYRHGDB',
-        txnTitle: 'Gadget',
-        txnAmount: 200,
-        txnDate: DateTime.now()
-    ),
-    TxnClass(
-        txnId: 'xYRHGDB',
-        txnTitle: 'Gadget',
-        txnAmount: 200,
-        txnDate: DateTime.now()
-    ),
-    TxnClass(
-        txnId: 'xYRHGDB',
-        txnTitle: 'Gadget',
-        txnAmount: 200,
-        txnDate: DateTime.now()
-    ),
-    TxnClass(
-        txnId: 'xYRHGDB',
-        txnTitle: 'Gadget',
-        txnAmount: 200,
-        txnDate: DateTime.now()
-    ),
-    TxnClass(
-        txnId: 'xYRHGDB',
-        txnTitle: 'Gadget',
-        txnAmount: 200,
-        txnDate: DateTime.now()
-    ),
-    TxnClass(
-        txnId: 'xYRHGDB',
-        txnTitle: 'Gadget',
-        txnAmount: 200,
+        txnId: 'q9d4f5s6e',
+        txnTitle: 'Headphone',
+        txnAmount: 1999,
         txnDate: DateTime.now()
     )
   ];
 
-  void addNewTransaction(String inputTitle, double inputAmount) {
+  void addNewTransaction(String inputTitle, int inputAmount) {
     final newTxn = TxnClass(
       txnId: DateTime.now().toString(),
       txnTitle: inputTitle,

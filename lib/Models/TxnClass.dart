@@ -3,7 +3,7 @@ import 'package:flutter/cupertino.dart';
 class TxnClass {
   final String txnId;
   final String txnTitle;
-  final double txnAmount;
+  final int txnAmount;
   final DateTime txnDate;
 
   TxnClass({

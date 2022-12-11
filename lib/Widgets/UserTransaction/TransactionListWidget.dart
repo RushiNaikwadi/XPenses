@@ -9,13 +9,30 @@ class TxnListWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.symmetric(vertical: 1, horizontal: 1),
-      margin: EdgeInsets.symmetric(vertical: 2, horizontal: 2),
-      height: 400,
+      decoration: BoxDecoration(
+        border: Border.all(
+          color: Colors.grey[900],
+          width: 3
+        ),
+        borderRadius: BorderRadius.all(
+          Radius.circular(5)
+        )
+      ),
+      padding: EdgeInsets.symmetric(vertical: 2, horizontal: 2),
+      margin: EdgeInsets.symmetric(vertical: 2, horizontal: 10),
+      height: 330,
       child: ListView.builder(
           itemBuilder: (BuildContext context, int index) {
             return Card(
+                color: Colors.greenAccent,
                 elevation: 15,
+                shape: RoundedRectangleBorder(
+                  side: BorderSide(
+                      color: Colors.grey[900],
+                      width: 1
+                  ),
+                  borderRadius: BorderRadius.circular(15),
+                ),
                 child: Row(
                   children: [
                     Container(
@@ -40,7 +57,7 @@ class TxnListWidget extends StatelessWidget {
                           Text(
                             DateFormat.yMMMd().add_jm().format(userTxnList[index].txnDate),
                             style: TextStyle(
-                                color: Colors.grey
+                                color: Colors.grey[600]
                             ),
                           ),
                         ],
@@ -58,9 +75,14 @@ class TxnListWidget extends StatelessWidget {
                       ),
                       decoration: BoxDecoration(
                           border: Border.all(
-                              color: Colors.indigo,
-                              width: 2
-                          )
+                              color: Colors.grey[900],
+                              width: 1
+                          ),
+                          borderRadius: BorderRadius.all(
+                            Radius.circular(10)
+                          ),
+                        color: Colors.yellow
+
                       ),
                       child: Text(
                         '${userTxnList[index].txnAmount} ₹',
