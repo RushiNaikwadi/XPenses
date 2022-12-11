@@ -28,6 +28,16 @@ class MyHomePage extends StatelessWidget {
               color: Colors.yellow
             ),
           ),
+          actions: [
+            IconButton(
+                onPressed: () {},
+                icon: Icon(
+                  Icons.add,
+                  size: 30,
+                  color: Colors.yellow[700],
+                ),
+            ),
+          ],
           backgroundColor: Colors.grey[900],
         ),
         body: SingleChildScrollView(
