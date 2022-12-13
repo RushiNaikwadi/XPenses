@@ -1,5 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:xpenses/Widgets/UserTransactionWidget.dart';
+
+import 'Widgets/TransactionListWidget.dart';
+import 'Widgets/NewTransactionAdderWidget.dart';
+
+import 'Models/TxnClass.dart';
+
 
 void main() => runApp(MyApp());
 
@@ -13,10 +18,57 @@ class MyApp extends StatelessWidget {
   }
 }
 
-class MyHomePage extends StatelessWidget {
+class MyHomePage extends StatefulWidget {
+  @override
+  State<MyHomePage> createState() => _MyHomePageState();
+}
 
+class _MyHomePageState extends State<MyHomePage> {
   final titleController = TextEditingController();
   final amountController = TextEditingController();
+
+  final List<TxnClass> _userTxnList = [
+    TxnClass(
+        txnId: 'e7e4d8gg4',
+        txnTitle: 'Breakfast',
+        txnAmount: 25,
+        txnDate: DateTime.now()
+    ),
+    TxnClass(
+        txnId: 'e7t8ffg64',
+        txnTitle: 'Gadget',
+        txnAmount: 200,
+        txnDate: DateTime.now()
+    ),
+    TxnClass(
+        txnId: 'q9d4f5s6e',
+        txnTitle: 'Headphone',
+        txnAmount: 1999,
+        txnDate: DateTime.now()
+    )
+  ];
+
+  void addNewTransaction(String inputTitle, int inputAmount) {
+    final newTxn = TxnClass(
+        txnId: DateTime.now().toString(),
+        txnTitle: inputTitle,
+        txnAmount: inputAmount,
+        txnDate: DateTime.now()
+    );
+
+    setState(() {
+      _userTxnList.add(newTxn);
+    });
+  }
+
+  void startAddingNewTxn (BuildContext ctx) {
+    showModalBottomSheet(
+        context: ctx,
+        builder: (_) {
+          return NewTransactionAdderWidget(transactionAdder: null,);
+        }
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -69,11 +121,13 @@ class MyHomePage extends StatelessWidget {
                         textAlign: TextAlign.center,
                       ),
                     ),
-                    color: Colors.brown[300],
+                    color: Colors.blue[300],
                     elevation: 5,
                   ),
                 ),
-                UserTransaction()
+                NewTransactionAdderWidget(transactionAdder: addNewTransaction),
+                SizedBox(height: 7.5),
+                TxnListWidget(userTxnList: _userTxnList)
               ],
             ),
         ),

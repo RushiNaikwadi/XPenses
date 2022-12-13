@@ -15,12 +15,12 @@ class TxnListWidget extends StatelessWidget {
           width: 3
         ),
         borderRadius: BorderRadius.all(
-          Radius.circular(5)
+          Radius.circular(10)
         )
       ),
-      padding: EdgeInsets.symmetric(vertical: 2, horizontal: 2),
+      padding: EdgeInsets.symmetric(vertical: 5, horizontal: 5),
       margin: EdgeInsets.symmetric(vertical: 2, horizontal: 10),
-      height: 330,
+      height: 335,
       child: ListView.builder(
           itemBuilder: (BuildContext context, int index) {
             return Card(
@@ -31,7 +31,7 @@ class TxnListWidget extends StatelessWidget {
                       color: Colors.grey[900],
                       width: 1
                   ),
-                  borderRadius: BorderRadius.circular(15),
+                  borderRadius: BorderRadius.circular(20),
                 ),
                 child: Row(
                   children: [
