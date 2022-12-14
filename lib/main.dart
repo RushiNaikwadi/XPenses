@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 
+import 'package:xpenses/Widgets/ChartWidget.dart';
 import 'Widgets/TransactionListWidget.dart';
 import 'Widgets/NewTransactionAdderWidget.dart';
 
 import 'Models/TxnClass.dart';
-
 
 void main() => runApp(MyApp());
 
@@ -12,7 +12,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Xpenses',
+      title: 'Personal-Expenses-App',
       home: MyHomePage(),
     );
   }
@@ -24,36 +24,22 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  final titleController = TextEditingController();
-  final amountController = TextEditingController();
+  final List<TxnClass> _userTxnList = [];
 
-  final List<TxnClass> _userTxnList = [
-    TxnClass(
-        txnId: 'e7e4d8gg4',
-        txnTitle: 'Breakfast',
-        txnAmount: 25,
-        txnDate: DateTime.now()
-    ),
-    TxnClass(
-        txnId: 'e7t8ffg64',
-        txnTitle: 'Gadget',
-        txnAmount: 200,
-        txnDate: DateTime.now()
-    ),
-    TxnClass(
-        txnId: 'q9d4f5s6e',
-        txnTitle: 'Headphone',
-        txnAmount: 1999,
-        txnDate: DateTime.now()
-    )
-  ];
+  List <TxnClass> get _recentTxn {
+    return _userTxnList.where((txn) {
+      return txn.txnDate.isAfter(
+          DateTime.now().subtract(Duration(days: 7)) 
+      );
+    }).toList();
+  }
 
-  void addNewTransaction(String inputTitle, int inputAmount) {
+  void addNewTransaction(String inputTitle, int inputAmount, DateTime chosenDate) {
     final newTxn = TxnClass(
         txnId: DateTime.now().toString(),
         txnTitle: inputTitle,
         txnAmount: inputAmount,
-        txnDate: DateTime.now()
+        txnDate: chosenDate
     );
 
     setState(() {
@@ -65,69 +51,75 @@ class _MyHomePageState extends State<MyHomePage> {
     showModalBottomSheet(
         context: ctx,
         builder: (_) {
-          return NewTransactionAdderWidget(transactionAdder: null,);
+          return GestureDetector(
+              onTap: () {},
+              child: NewTransactionAdderWidget(transactionAdder: addNewTransaction),
+              behavior: HitTestBehavior.opaque,
+          );
         }
     );
+  }
+
+  void editTxn (int index) {
+
+  }
+
+  void deleteTxn (String id) {
+    setState(() {
+      _userTxnList.removeWhere((element) {
+        return element.txnId == id;
+      });
+    });
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
+          backgroundColor: Colors.purpleAccent,
           title: Text(
-              'Xpenses',
+            'Xpenses',
             style: TextStyle(
-              color: Colors.yellow
+              fontWeight: FontWeight.bold,
+              color: Colors.black
             ),
           ),
+          centerTitle: true,
           actions: [
             IconButton(
-                onPressed: () {},
+                onPressed: () => startAddingNewTxn(context),
                 icon: Icon(
                   Icons.add,
                   size: 30,
-                  color: Colors.yellow[700],
+                  color: Colors.black
                 ),
             ),
           ],
-          backgroundColor: Colors.grey[900],
         ),
         body: SingleChildScrollView(
           child: Column(
-              mainAxisAlignment: MainAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
                 Container(
-                  width: double.infinity,
-                  height: 110,
-                  margin: EdgeInsets.symmetric(vertical: 2.5, horizontal: 2),
-                  padding: EdgeInsets.symmetric(vertical: 2.5, horizontal: 2.5),
-                  child: Card(
-                    shape: RoundedRectangleBorder(
-                      side: BorderSide(
-                          color: Colors.grey[900],
-                          width: 3
-                      ),
-                      borderRadius: BorderRadius.circular(10),
-                    ),
-                    child: Center(
-                      child: Text(
-                        'Week Chart',
-                        style: TextStyle(
-                            fontSize: 45,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.blue[900]
+                    margin: EdgeInsets.symmetric(vertical: 5, horizontal: 5),
+                    child: ChartWidget(_recentTxn)
+                ),
+                (_userTxnList.isEmpty ?
+                Container(
+                  height: 470,
+                  child: Center(
+                    child: Text(
+                      'No Expenses',
+                      style: TextStyle(
+                          fontSize: 50,
+                          fontWeight: FontWeight.bold
                         ),
                         textAlign: TextAlign.center,
                       ),
-                    ),
-                    color: Colors.blue[300],
-                    elevation: 5,
                   ),
-                ),
-                NewTransactionAdderWidget(transactionAdder: addNewTransaction),
-                SizedBox(height: 7.5),
-                TxnListWidget(userTxnList: _userTxnList)
+                )
+                : TxnListWidget(userTxnList: _userTxnList, txnDeleter: deleteTxn))
               ],
             ),
         ),
